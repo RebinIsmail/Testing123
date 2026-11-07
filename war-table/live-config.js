@@ -1,1 +1,1 @@
-window.WOTR_SYNC_CONFIG = { url: '', publishableKey: '' }; // Public client values only. Never add a service-role key here.
+window.WOTR_SYNC_CONFIG = { url: 'https://ycggiiewflbxalauzaaq.supabase.co', publishableKey: 'sb_publishable_jN9a9U2jwZBOHzd6zrrNyg_P1tUD8YF' }; // Public client values only. Room keys belong in private links, never here.
