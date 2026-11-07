@@ -1,0 +1,33 @@
+name: Publish Middle-earth War Table
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'war-table/**'
+      - '.github/workflows/publish-war-table.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload War Table
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: war-table
+      - name: Publish site
+        id: deployment
+        uses: actions/deploy-pages@v4
