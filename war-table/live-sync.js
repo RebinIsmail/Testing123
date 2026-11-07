@@ -38,12 +38,9 @@
     history.replaceState(null, '', location.pathname + location.search + '#' + params);
   }
   async function authenticate() {
-    const {data, error} = await client.auth.getSession();
-    if (error) throw error;
-    if (!data?.session) {
-      const result = await client.auth.signInAnonymously();
-      if (result.error) throw result.error;
-    }
+    // Shared rooms are protected by a random, unguessable room key in the URL fragment.
+    // Room RPCs explicitly grant the anon role access only through validated server functions.
+    // No anonymous Auth provider needs to be enabled.
     authOk = true;
   }
   async function readRoom() {
